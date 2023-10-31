@@ -4,8 +4,11 @@ namespace Programm
 {
     class PianoApp
     {
-        static int[] PervaOcktava = new int[] { 2093, 2217, 2349, 2489, 2637 };
-        static int[] VtoraOcktava = new int[] { 4186, 4435, 4699, 4978, 5274 };
+        public static Dictionary<int, int[]> ValueOctyava = new Dictionary<int, int[]>()
+        {
+            {1, new int[] { 2093, 2217, 2349, 2489, 2637, 2837 }},
+            {2, new int[] { 4186, 4435, 4699, 4978, 5274, 6337 }}
+        };
 
         static int Ocktava = 1;
         static void Main()
@@ -14,20 +17,10 @@ namespace Programm
             Console.WriteLine("Клавишы управления: A | S | D | F | G | H");
             ConsoleKey key = Console.ReadKey().Key;
 
-            while(key != ConsoleKey.Escape)
+            while (key != ConsoleKey.Escape)
             {
-                if (key == ConsoleKey.F1)
-                {
-                    Console.WriteLine("Октава 7");
-                    Ocktava = 1;
-                    AudioSound(key);
-                }
-                if (key == ConsoleKey.F2)
-                {
-                    Console.WriteLine("Октава 8");
-                    Ocktava = 2;
-                    AudioSound(key);
-                }
+                if (key == ConsoleKey.F1) Console.WriteLine("Октава 7"); Ocktava = 1; AudioSound(key);
+                if (key == ConsoleKey.F2) Console.WriteLine("Октава 8"); Ocktava = 2; AudioSound(key);
 
                 key = Console.ReadKey().Key;
                 AudioSound(key);
@@ -37,70 +30,29 @@ namespace Programm
 
         public static void AudioSound(ConsoleKey bind)
         {
-                switch(bind)
-                {
-                    case ConsoleKey.A:
-                        if(Ocktava == 1)
-                        {
-                            Console.Beep(PervaOcktava[0], 300);
-                        }
-                        if (Ocktava == 2)
-                        {
-                            Console.Beep(VtoraOcktava[0], 300);
-                        }
-                        break;
-                    case ConsoleKey.S:
-                        if (Ocktava == 1)
-                        {
-                            Console.Beep(PervaOcktava[1], 300);
-                        }
-                        if (Ocktava == 2)
-                        {
-                            Console.Beep(VtoraOcktava[1], 300);
-                        }
-                        break;
-                    case ConsoleKey.D:
-                        if (Ocktava == 1)
-                        {
-                            Console.Beep(PervaOcktava[2], 300);
-                        }
-                        if (Ocktava == 2)
-                        {
-                            Console.Beep(VtoraOcktava[2], 300);
-                        }
-                        break;
-                    case ConsoleKey.F:
-                        if (Ocktava == 1)
-                        {
-                            Console.Beep(PervaOcktava[3], 300);
-                        }
-                        if (Ocktava == 2)
-                        {
-                            Console.Beep(VtoraOcktava[3], 300);
-                        }
-                        break;
-                    case ConsoleKey.G:
-                        if (Ocktava == 1)
-                        {
-                            Console.Beep(PervaOcktava[4], 300);
-                        }
-                        if (Ocktava == 2)
-                        {
-                            Console.Beep(VtoraOcktava[4], 300);
-                        }
-                        break;
-                    case ConsoleKey.H:
-                        if (Ocktava == 1)
-                        {
-                            Console.Beep(PervaOcktava[4], 300);
-                        }
-                        if (Ocktava == 2)
-                        {
-                            Console.Beep(VtoraOcktava[4], 300);
-                        }
-                        break;
-                }
+            switch (bind)
+            {
+                case ConsoleKey.A:        
+                    Console.Beep(ValueOctyava[Ocktava][0], 300);
+                    break;
+                case ConsoleKey.S:
+                    Console.Beep(ValueOctyava[Ocktava][1], 300);
+                    break;
+                case ConsoleKey.D:
+                    Console.Beep(ValueOctyava[Ocktava][2], 300);
+                    break;
+                case ConsoleKey.F:
+                    Console.Beep(ValueOctyava[Ocktava][3], 300);
+                    break;
+                case ConsoleKey.G:
+                    Console.Beep(ValueOctyava[Ocktava][4], 300);
+                    break;
+                case ConsoleKey.H:
+                    Console.Beep(ValueOctyava[Ocktava][5], 300);
+                    break;
+            }
         }
     }
     
 }
+
